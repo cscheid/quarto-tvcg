@@ -595,35 +595,32 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
    \if\instring{Table}{#1}\vskip.5\abovecaptionskip\else\vskip\belowcaptionskip\fi}
 
  %% fix the font size of the bibliography to 8pt
- %% cscheid, 2022-02-22: note that we're brute-forcing this now on plainnat-vgtc.bst
- %% I don't understand why that's necessary, but it worked. You can submit a PR to fix
- %% it if you know how any of this works. 
- \newdimen\bibindent
- \newdimen\bibspacing
- \setlength\bibindent{1em}
- \setlength{\bibspacing}{\z@}
- \renewenvironment{thebibliography}[1]
-      {\section*{\refname}%
-       \scriptsize%
-       \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
-       \list{\@biblabel{\@arabic\c@enumiv}}%
-            {\settowidth\labelwidth{\@biblabel{#1}}%
-             \leftmargin\labelwidth
-             \advance\leftmargin\labelsep
-             \itemsep\bibspacing    % should this be commented out?
-             \parsep\bibspacing     % should this be commented out?
-             \@openbib@code
-             \usecounter{enumiv}%
-             \let\p@enumiv\@empty
-             \renewcommand\theenumiv{\@arabic\c@enumiv}}%
-       \sloppy
-       \clubpenalty4000
-       \@clubpenalty \clubpenalty
-       \widowpenalty4000%
-       \sfcode`\.\@m}
-      {\def\@noitemerr
-        {\@latex@warning{Empty `thebibliography' environment}}%
-       \endlist}
+ %% \newdimen\bibindent
+ %% \newdimen\bibspacing
+ %% \setlength\bibindent{1em}
+ %% \setlength{\bibspacing}{\z@}
+ %% \renewenvironment{thebibliography}[1]
+ %%      {\section*{\refname}%
+ %%       \scriptsize%
+ %%       \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+ %%       \list{\@biblabel{\@arabic\c@enumiv}}%
+ %%            {\settowidth\labelwidth{\@biblabel{#1}}%
+ %%             \leftmargin\labelwidth
+ %%             \advance\leftmargin\labelsep
+ %%             \itemsep\bibspacing    % should this be commented out?
+ %%             \parsep\bibspacing     % should this be commented out?
+ %%             \@openbib@code
+ %%             \usecounter{enumiv}%
+ %%             \let\p@enumiv\@empty
+ %%             \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+ %%       \sloppy
+ %%       \clubpenalty4000
+ %%       \@clubpenalty \clubpenalty
+ %%       \widowpenalty4000%
+ %%       \sfcode`\.\@m}
+ %%      {\def\@noitemerr
+ %%        {\@latex@warning{Empty `thebibliography' environment}}%
+ %%       \endlist}
 \fi
 
 \newcommand{\vgtc@empty}{}

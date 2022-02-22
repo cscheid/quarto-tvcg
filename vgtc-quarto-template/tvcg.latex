@@ -1,7 +1,8 @@
+$if(review)$
+\documentclass[review,journal]{vgtc}                % review (journal style)
+$else$
 \documentclass[journal]{vgtc}                % final (journal style)
-%\documentclass[review,journal]{vgtc}         % review (journal style)
-%\documentclass[widereview]{vgtc}             % wide-spaced review
-%\documentclass[preprint,journal]{vgtc}       % preprint (journal style)
+$endif$
 
 $if(highlighting-macros)$
 $highlighting-macros$
@@ -14,17 +15,41 @@ $endif$
 
 $if(natbib)$
 \usepackage[$natbiboptions$]{natbib}
-\bibliographystyle{plainnat-vgtc}
+\bibliographystyle{plainnat}
+% \bibliographystyle{plainnat-vgtc}
 $endif$
 
 $if(csl-refs)$
 \newlength{\cslhangindent}
-\setlength{\cslhangindent}{1.5em}
-\newenvironment{CSLReferences}%
-  {$if(csl-hanging-indent)$\setlength{\parindent}{0pt}%
-  \everypar{\setlength{\hangindent}{\cslhangindent}}\ignorespaces$endif$}%
-  {\par}
+\setlength{\cslhangindent}{1.2em}
+\newlength{\csllabelwidth}
+\setlength{\csllabelwidth}{1.2em}
+\newlength{\cslentryspacingunit} % times entry-spacing
+\setlength{\cslentryspacingunit}{\parskip}
+\newenvironment{CSLReferences}[2] % #1 hanging-ident, #2 entry spacing
+ {% don't indent paragraphs
+  
+  \setlength{\parindent}{0pt}
+  % turn on hanging indent if param 1 is 1
+  \ifodd #1
+  \let\oldpar\par
+  \def\par{\hangindent=\cslhangindent\oldpar}
+  \fi
+  % set entry spacing
+  \setlength{\parskip}{#2\cslentryspacingunit}
+  \scriptsize
+ }%
+ {}
+\usepackage{calc}
+\newcommand{\CSLBlock}[1]{#1\hfill\break}
+\newcommand{\CSLLeftMargin}[1]{\parbox[t]{\csllabelwidth}{#1}}
+% we couldn't quite match the parskip-0 setup of the old template, so we hack.
+% PRs welcome.
+\newcommand{\CSLRightInline}[1]{\vspace{-0.2em}\parbox[t]{\linewidth - \csllabelwidth}{#1}\break}
+\newcommand{\CSLIndent}[1]{\hspace{\cslhangindent}#1}
 $endif$
+
+\usepackage[font={scriptsize,sf},justification=justified]{caption}
 
 $if(tables)$
 \usepackage{longtable,booktabs,array}
@@ -32,13 +57,6 @@ $if(multirow)$
 \usepackage{multirow}
 $endif$
 \usepackage{calc} % for calculating minipage widths
-$if(beamer)$
-\usepackage{caption}
-% Make caption package work with longtable
-\makeatletter
-\def\fnum@table{\tablename~\thetable}
-\makeatother
-$else$
 % Correct order of tables after \paragraph or \subparagraph
 \usepackage{etoolbox}
 \makeatletter
@@ -47,7 +65,6 @@ $else$
 % Allow footnotes in longtable head/foot
 \IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
 \makesavenoteenv{longtable}
-$endif$
 $endif$
 
 % https://tex.stackexchange.com/a/224096
@@ -124,7 +141,7 @@ $endif$
 \usepackage{textcomp}                  % use better special symbols
 \usepackage{mathptmx}                  % use matching math font
 \usepackage{times}                     % we use Times as the main font
-\usepackage{cite}                      % needed to automatically sort the references
+% \usepackage{cite}                      % needed to automatically sort the references
 \usepackage{tabu}                      % only used for the table example
 \usepackage{booktabs}                  % only used for the table example
 %% We encourage the use of mathptmx for consistent usage of times font
@@ -185,16 +202,15 @@ $endif$
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
 
+$if(teaser)$
 % %% A teaser figure can be included as follows
-% \teaser{
-%   \centering
-%   \includegraphics[width=\linewidth]{CypressView}
-%   \caption{In the Clouds: Vancouver from Cypress Mountain. Note that the teaser may not be wider than the abstract block.}
-%   \label{fig:teaser}
-% }
-
-%% FIXME THIS IS CURRENTLY BREAKING QUARTO AND PANDOC.
-%% \vgtcinsertpkg
+\teaser{
+  \centering
+  \includegraphics[$if(teaser.image-options)$$teaser.image-options$$else$width=\linewidth$endif$]{$teaser.image$}
+  \caption{$teaser.caption$}
+  \label{fig:teaser}
+}
+$endif$
 
 \usepackage[dvipsnames]{xcolor}
 \IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}

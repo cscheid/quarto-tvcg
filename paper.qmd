@@ -1,19 +1,20 @@
 ---
 # Quarto-specific stuff you probably don't want to change for now
 pdf-engine: pdflatex
-documentclass: vgtc
-cite-method: natbib
-natbiboptions: square, numbers
+csl: vgtc-tvcg.csl
+link-citations: true
+
+################################################################################
+
 format:
   pdf:
     template: vgtc-quarto-template/tvcg.latex
-  # FIXME how does keep_tex work in the yaml?
-  latex:
-    template: vgtc-quarto-template/tvcg.latex
-  #  Uncomment the line below to also generate an HTML version
-  html: default
+#  Uncomment the line below to also generate an HTML version
+#  html: default
 
-# Stuff you'll want to change
+################################################################################
+# Paper metadata
+
 title: Global Illumination for Fun and Profit
 shortauthortitle: "Biv et al.: Global Illumination for Fun and Profit"
 author:
@@ -30,7 +31,9 @@ author:
 # If you are submitting a paper to a conference for review with a double
 # blind reviewing process, please uncomment the line below and use your
 # OnlineID. 
-# online-id: 987654321 
+#online-id: 1337
+# comment this line for final version
+review: true
 
 # please declare the paper type of your paper to help reviewers, only shown in review mode
 # choices:
@@ -40,6 +43,16 @@ author:
 #   system
 #   theory/model
 paper-type: please specify
+
+# Uncomment this to add a teaser to your paper
+
+teaser:
+  image-options: width=\linewidth
+  image: CypressView.jpg
+  caption: |
+    In the Clouds: Vancouver from Cypress Mountain. Note that the
+    teaser may not be wider than the abstract block.
+  label: fig-teaser
 
 abstract: |
   Duis autem vel eum iriure dolor in hendrerit in vulputate
@@ -54,12 +67,12 @@ abstract: |
   consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
   accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
   delenit augue duis dolore te feugait nulla facilisi.
-bibliography: paper.bib
-firstsection: Introduction
 keyword:
   - Radiosity
   - global illumination
   - constant time
+firstsection: Introduction
+bibliography: paper.bib
 ---
 
 This template is for papers of VGTC-sponsored conferences such as IEEE
@@ -119,7 +132,7 @@ rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
 ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
 sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
 dolore magna aliquyam erat, sed diam
-voluptua [@Kitware:2003,Max:1995:OMF]. At vero eos et accusam et
+voluptua [@Kitware:2003,@Max:1995:OMF]. At vero eos et accusam et
 justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
 takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
 amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
@@ -217,9 +230,9 @@ dolore te feugait nulla facilisi. Lorem ipsum dolor sit amet,
 consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt
 ut laoreet dolore magna aliquam erat volutpat.
 
-[^1]: The algorithm behind Marching Cubes by @Lorensen:1987:MCA had
-    already been described by @Wyvill:1986:DSS a
-    year earlier.
+[^1]: The algorithm behind Marching Cubes by Lorensen et al. @Lorensen:1987:MCA had
+    already been described by Wyvill et al. a
+    year earlier [@Wyvill:1986:DSS].
 
 [^2]: Footnotes appear at the bottom of the column.
 
@@ -227,7 +240,7 @@ ut laoreet dolore magna aliquam erat volutpat.
 
 Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
 suscipit lobortis nisl ut aliquip ex ea commodo
-consequat, by @Nielson:1991:TAD. Duis autem vel eum iriure dolor in
+consequat [@Nielson:1991:TAD]. Duis autem vel eum iriure dolor in
 hendrerit in vulputate velit esse molestie consequat, vel illum dolore
 eu feugiat nulla facilisis at vero eros et accumsan et iusto odio
 dignissim qui blandit praesent luptatum zzril delenit augue duis
@@ -257,7 +270,7 @@ Nunc ac velit tellus. Donec et venenatis mauris. Lorem ipsum dolor sit amet, con
 
 Defend a claim by referencing a paper [@Isenberg:2017:VMC].
 
-As @Kindlmann:1999:SAG has shown, it is possible to generate transfer functions semi-automatically. 
+As Kindlmann has shown, it is possible to generate transfer functions semi-automatically [@Kindlmann:1999:SAG].
 
 ## Computational Output
 
@@ -311,3 +324,5 @@ rebum.
 
 The authors wish to thank A, B, and C. This work was supported in part by
 a grant from XYZ (# 12345-67890).
+
+# References {.unnumbered}

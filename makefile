@@ -1,2 +1,2 @@
 all:
-	quarto render
+	quarto render paper.qmd
