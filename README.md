@@ -13,7 +13,7 @@ With this template and quarto, you can:
   the paper is recompiled
   
   
-## Requirements
+## Installation Requirements
 
 * [Quarto](https://quarto.org)
 
@@ -31,7 +31,38 @@ With this template and quarto, you can:
 This template is heavily based on the LaTeX template files, by authors
 below. The full README for that template follows.
 
-## Feedback
+## Getting started
+
+The files you'll need are all under `src/`. After you've installed the
+requirements, you should be able to
+
+    $ cd src
+    $ quarto render paper.qmd
+
+This will produce a `src/paper.pdf` document.
+
+If you start by forking this repository, then you can get going right
+away by editing `src/paper.qmd`.
+
+### Producing an HTML version of the file
+
+At any point, you can create an HTML version of the file by uncommenting
+the `html: default` line from the front matter in `src/paper.qmd`. Alternatively,
+you can simply type
+
+    $ quarto render paper.qmd --to html
+
+This will produce a `paper.html` and `paper_files` subdirectory with the necessary
+HTML resources. The links in quarto HTML documents are all relative, so copying
+the file and its folder to a web page should be enough.
+
+#### Customization
+
+If you want to control the look and feel of your HTML document, Quarto
+offers extensive theming. Please refer [to the documentation and
+tutorials](https://quarto.org) for details.
+
+# Feedback
 
 This is an early release. If you run into trouble, please don't
 hesitate to file a GitHub issue. 
