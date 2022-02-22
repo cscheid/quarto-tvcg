@@ -6,9 +6,9 @@ cite-method: natbib
 natbiboptions: square, numbers
 format:
   pdf:
-    template: tvcg.latex
+    template: vgtc-quarto-template/tvcg.latex
   latex:
-    template: tvcg.latex
+    template: vgtc-quarto-template/tvcg.latex
 #  Uncomment the two lines below to also generate an HTML version
 #  html:
 #    dummy: unused
