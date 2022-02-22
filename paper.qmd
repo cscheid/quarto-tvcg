@@ -153,6 +153,60 @@ TBF: Finish this table.
 
 : VIS/VisWeek accepted/presented papers from 1990--2016. {#tbl-vis-papers}
 
+## Mezcal Head
+
+Lorem ipsum dolor sit amet (see @fig-sample), consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. 
+
+### Duis Autem
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est. Lorem
+ipsum dolor sit amet.
+
+
+![A visualization of the 1990--2015 data from @tbl-vis-papers. The image is from @Isenberg:2017:VMC and is in the public domain.](paper-count-w-2015-new.pdf){#fig-sample width=3in}
+
+# Quarto Goodies
+
+Just testing the basic stuff.
+
+```{r}
+#| echo: false
+library(ggplot2)
+library(palmerpenguins)
+```
+
+```{r}
+#| fig-pos: 't'
+#| fig-width: 3
+#| fig-height: 2
+#| echo: false
+#| warning: false
+#| label: fig-penguins
+#| fig-cap: Some penguins, ggplotted.
+ggplot(penguins, aes(x = bill_length_mm, y = bill_depth_mm, color = species)) + geom_point()
+```
+
+The penguins in @fig-penguins sure are cute.
 
 # Discussion
 
