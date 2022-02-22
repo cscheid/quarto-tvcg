@@ -594,7 +594,10 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
    \fi
    \if\instring{Table}{#1}\vskip.5\abovecaptionskip\else\vskip\belowcaptionskip\fi}
 
-%% fix the font size of the bibliography to 8pt
+ %% fix the font size of the bibliography to 8pt
+ %% cscheid, 2022-02-22: note that we're brute-forcing this now on plainnat-vgtc.bst
+ %% I don't understand why that's necessary, but it worked. You can submit a PR to fix
+ %% it if you know how any of this works. 
  \newdimen\bibindent
  \newdimen\bibspacing
  \setlength\bibindent{1em}
