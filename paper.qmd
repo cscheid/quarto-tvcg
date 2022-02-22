@@ -1,0 +1,73 @@
+---
+# Quarto-specific stuff you probably don't want to change for now
+template: tvcg.latex
+pdf-engine: pdflatex
+documentclass: vgtc
+format: pdf
+cite-method: natbib
+natbiboptions: square, numbers
+
+# Stuff you'll want to change
+title: Global Illumination for Fun and Profit
+shortauthortitle: "Biv et al.: Global Illumination for Fun and Profit"
+author:
+  - Roy G. Biv
+  - Ed Grimley, *Member, IEEE*
+  - Martha Stewart
+abstract: |
+  Duis autem vel eum iriure dolor in hendrerit in vulputate
+  velit esse molestie consequat, vel illum dolore eu feugiat nulla
+  facilisis at vero eros et accumsan et iusto odio dignissim qui blandit
+  praesent luptatum zzril delenit augue duis dolore te feugait nulla
+  facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+  sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+  aliquam erat volutpat. Ut wisi enim ad minim veniam, quis nostrud exerci tation ullamcorper
+  suscipit lobortis nisl ut aliquip ex ea commodo consequat. Duis autem
+  vel eum iriure dolor in hendrerit in vulputate velit esse molestie
+  consequat, vel illum dolore eu feugiat nulla facilisis at vero eros et
+  accumsan et iusto odio dignissim qui blandit praesent luptatum zzril
+  delenit augue duis dolore te feugait nulla facilisi.
+bibliography: paper.bib
+firstsection: Introduction
+tvcg-keywords:
+  - Radiosity
+  - global illumination
+  - constant time
+---
+
+This template is for papers of VGTC-sponsored conferences such as IEEE
+VIS, IEEE VR, and ISMAR which are published as special issues of
+TVCG. The template does not contain the respective dates of the
+conference/journal issue, these will be entered by IEEE as part of the
+publication production process. Therefore, **please leave the
+copyright statement at the bottom-left of this first page untouched**.
+
+# Using the Sytle Template
+
+* If you receive compilation errors along the lines of `Package ifpdf
+  Error: Name clash, \ifpdf is already defined` then please add a new
+  line `\let\ifpdf\relax` right after the
+  `\documentclass[journal]{vgtc}` call. Note that your error is due to
+  packages you use that define "`\ifpdf`" which is obsolete (the
+  result is that `\ifpdf` is defined twice); these packages should be
+  changed to use ifpdf package instead.
+  
+* Note that each author's affiliations have to be provided in the
+  author footer on the bottom-left corner of the first page. It is
+  permitted to merge two or more people from the same institution as
+  long as they are shown in the same order as in the overall author
+  sequence on the top of the first page. For example, if authors A, B,
+  C, and D are from institutions 1, 2, 1, and 2, respectively, then it
+  is ok to use 2 bullets as follows:
+  
+  * A and C are with Institution 1. E-mail: {a, c}@i1.com .
+  * B and D are with Institution 2. E-mail: {b, d}@i2.org .
+
+# Method
+
+# Experiments
+
+# Discussion
+
+# Conclusions and Future Work
+
