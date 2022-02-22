@@ -769,7 +769,7 @@ Manuscript received xx xxx. 201x; accepted xx xxx. 201x. Date of Publication xx 
 %%              \endgroup\par%
 %%          \fi%
         }%
-	\begin{center}\includegraphics{diamondrule}\end{center}
+	\begin{center}\includegraphics{vgtc-quarto-template/fig/diamondrule}\end{center}
        %\vspace{\abstxtspace}%
 	\ifx\firstsectiontxt\vgtc@empty \else
 	  \section{\firstsectiontxt}

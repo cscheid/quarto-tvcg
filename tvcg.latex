@@ -165,16 +165,14 @@ $endif$
 
 \author{$for(author)$$author$$sep$ \and $endfor$}
 
+$if(author-footer)$
 \authorfooter{
-%% insert punctuation at end of each item
+$for(author-footer)$
 \item
- Roy G. Biv is with Starbucks Research. E-mail: roy.g.biv@aol.com.
-\item
- Ed Grimley is with Grimley Widgets, Inc.. E-mail: ed.grimley@aol.com.
-\item
- Martha Stewart is with Martha Stewart Enterprises at Microsoft
- Research. E-mail: martha.stewart@marthastewart.com.
+ $author-footer$
+$endfor$
 }
+$endif$
 
 %other entries to be set up for journal
 \shortauthortitle{Biv \MakeLowercase{\textit{et al.}}: Global Illumination for Fun and Profit}
