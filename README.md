@@ -1,8 +1,44 @@
-A quarto (https://quarto.org) template for TVCG papers (journal-only for now).
+# A quarto template for IEEE VIS journal submissions (TVCG)
 
-README for the pdflatex style it's based on below.
+With this repository, you'll be able to create submissions for [IEEE
+VIS](https://ieeevis.org) using [Quarto](https://quarto.org).
+
+With this template and quarto, you can:
+
+* generate publication-ready PDF files as well as HTML
+  documents from the same source
+  
+* ensure computational reproducibility by including computational
+  content with the source of the paper, which gets executed every time
+  the paper is recompiled
+  
+  
+## Requirements
+
+* [Quarto](https://quarto.org)
+
+* If you intend to run R code chunks, you'll need a recent version of
+  R. [Pre-release versions of RStudio](https://dailies.rstudio.com/)
+  offer native support for Quarto, but R is not at all required to run
+  Quarto at all if you don't intend to use R code.
+
+* If you intend to run Python code chunks, you'll need to install
+  [Jupyter](https://jupyter.org/).
+
+* If you intend to run both Python and R in the same document, you'll
+  need to install the R package `reticulate`.
+
+This template is heavily based on the LaTeX template files, by authors
+below. The full README for that template follows.
+
+## Feedback
+
+This is an early release. If you run into trouble, please don't
+hesitate to file a GitHub issue. 
+
 
 --------------------------------------------------------------------------------
+# Old Readme
 
 Created by Torsten Moeller (vis@cs.sfu.ca), April 6 2004
 modified by Steven Bergner and Torsten Moeller, June 30 2006
