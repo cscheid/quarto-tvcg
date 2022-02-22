@@ -1,11 +1,17 @@
 ---
 # Quarto-specific stuff you probably don't want to change for now
-template: tvcg.latex
 pdf-engine: pdflatex
 documentclass: vgtc
-format: pdf
 cite-method: natbib
 natbiboptions: square, numbers
+format:
+  pdf:
+    template: tvcg.latex
+  latex:
+    template: tvcg.latex
+#  Uncomment the two lines below to also generate an HTML version
+#  html:
+#    dummy: unused
 
 # Stuff you'll want to change
 title: Global Illumination for Fun and Profit
@@ -29,7 +35,7 @@ abstract: |
   delenit augue duis dolore te feugait nulla facilisi.
 bibliography: paper.bib
 firstsection: Introduction
-tvcg-keywords:
+keyword:
   - Radiosity
   - global illumination
   - constant time
@@ -42,7 +48,10 @@ conference/journal issue, these will be entered by IEEE as part of the
 publication production process. Therefore, **please leave the
 copyright statement at the bottom-left of this first page untouched**.
 
-# Using the Sytle Template
+# Using the Style Template
+
+(This information is incorrect for the [quarto](https://quarto.org)
+template. We provide it below mostly as a markdown illustration.)
 
 * If you receive compilation errors along the lines of `Package ifpdf
   Error: Name clash, \ifpdf is already defined` then please add a new
@@ -60,12 +69,90 @@ copyright statement at the bottom-left of this first page untouched**.
   C, and D are from institutions 1, 2, 1, and 2, respectively, then it
   is ok to use 2 bullets as follows:
   
-  * A and C are with Institution 1. E-mail: {a, c}@i1.com .
-  * B and D are with Institution 2. E-mail: {b, d}@i2.org .
+  * A and C are with Institution 1. E-mail: {a, c}\@i1.com .
+  * B and D are with Institution 2. E-mail: {b, d}\@i2.org .
 
-# Method
+* The style uses the hyperref package, thus turns references into internal links. We thus recommend to make use of the "`\autoref{reference}`" call (instead of "`Figure\~{}\ref{reference}`" or similar) since "`\autoref{reference}`" turns the entire reference into an internal link, not just the number. Examples: \autoref{fig:sample} and \autoref{tab:vis_papers}.
 
-# Experiments
+* The style automatically looks for image files with the correct extension (eps for regular \LaTeX; pdf, png, and jpg for pdf\LaTeX), in a set of given subfolders (figures/, pictures/, images/). It is thus sufficient to use "`\includegraphics{CypressView}`" (instead of "`\includegraphics{pictures/CypressView.jpg}`").
+
+* For adding hyperlinks and DOIs to the list of references, you can use "`\bibliographystyle{abbrv-doi-hyperref-narrow}`" (instead of "`\bibliographystyle{abbrv}`"). It uses the doi and url fields in a bib\TeX\ entry and turns the entire reference into a link, giving priority to the doi. The doi can be entered with or without the "`http://dx.doi.org/`" url part. See the examples in the bib\TeX\ file and the bibliography at the end of this template.\\[1em]
+
+  **Note 1**: occasionally (for some LaTeX distributions) this hyper-linked bibTeX style may lead to **compilation errors** ("`pdfendlink ended up in different nesting level ...`") if a reference entry is broken across two pages (due to a bug in hyperref). In this case make sure you have the latest version of the hyperref package (i.\,e., update your \LaTeX\ installation/packages) or, alternatively, revert back to "`\bibliographystyle{abbrv-doi-narrow}`" (at the expense of removing hyperlinks from the bibliography) and try "`\bibliographystyle{abbrv-doi-hyperref-narrow}`" again after some more editing.
+  
+  **Note 2**: the "`-narrow`" versions of the bibliography style use the font "PTSansNarrow-TLF" for typesetting the DOIs in a compact way. This font needs to be available on your \LaTeX\ system. It is part of the ["paratype" package](https://www.ctan.org/pkg/paratype), and many distributions (such as MikTeX) have it automatically installed. If you do not have this package yet and want to use a "`-narrow`" bibliography style then use your \LaTeX\ system's package installer to add it. If this is not possible you can also revert to the respective bibliography styles without the "`-narrow`" in the file name.
+  
+  DVI-based processes to compile the template apparently cannot handle the different font so, by default, the template file uses the `abbrv-doi` bibliography style but the compiled PDF shows you the effect of the `abbrv-doi-hyperref-narrow` style.
+
+
+# Bibliography Instructions
+
+# Example Section
+
+Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam
+voluptua @Kitware:2003,Max:1995:OMF. At vero eos et accusam et
+justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est.
+
+# Exposition
+
+
+Duis autem vel eum iriure dolor in hendrerit in vulputate velit esse
+molestie consequat, vel illum dolore eu feugiat nulla facilisis at
+vero eros et accumsan et iusto odio dignissim qui blandit praesent
+luptatum zzril delenit augue duis dolore te feugait nulla
+facilisi. Lorem ipsum dolor sit amet, consectetuer adipiscing elit,
+sed diam nonummy nibh euismod tincidunt ut laoreet dolore magna
+aliquam erat volutpat @Kindlmann:1999:SAG.
+
+$$\sum_{j=1}^{z} j = \frac{z(z+1)}{2}$$ {#eq-1}
+
+Lorem ipsum dolor sit amet (@eq-1), consetetur sadipscing elitr, sed diam
+nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat,
+sed diam voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet.
+
+## Lorem Ipsum
+
+Lorem ipsum dolor sit amet (see @tbl-vis-papers), consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea
+takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit
+amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor
+invidunt ut labore et dolore magna aliquyam erat, sed diam
+voluptua. At vero eos et accusam et justo duo dolores et ea
+rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem
+ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur
+sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et
+dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam
+et justo duo dolores et ea rebum.
+
+TBF: Finish this table.
+
+| Col1 | Col2 | Col3 |
+|------|------|------|
+| A    | B    | C    |
+| E    | F    | G    |
+| A    | G    | G    |
+
+: VIS/VisWeek accepted/presented papers from 1990--2016. {#tbl-vis-papers}
+
 
 # Discussion
 

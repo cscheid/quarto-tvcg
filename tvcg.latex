@@ -20,6 +20,51 @@ $if(csl-refs)$
   {\par}
 $endif$
 
+$if(tables)$
+\usepackage{longtable,booktabs,array}
+$if(multirow)$
+\usepackage{multirow}
+$endif$
+\usepackage{calc} % for calculating minipage widths
+$if(beamer)$
+\usepackage{caption}
+% Make caption package work with longtable
+\makeatletter
+\def\fnum@table{\tablename~\thetable}
+\makeatother
+$else$
+% Correct order of tables after \paragraph or \subparagraph
+\usepackage{etoolbox}
+\makeatletter
+\patchcmd\longtable{\par}{\if@noskipsec\mbox{}\fi\par}{}{}
+\makeatother
+% Allow footnotes in longtable head/foot
+\IfFileExists{footnotehyper.sty}{\usepackage{footnotehyper}}{\usepackage{footnote}}
+\makesavenoteenv{longtable}
+$endif$
+$endif$
+
+% https://tex.stackexchange.com/a/224096
+\makeatletter
+\let\oldlt\longtable
+\let\endoldlt\endlongtable
+\def\longtable{\@ifnextchar[\longtable@i \longtable@ii}
+\def\longtable@i[#1]{\begin{figure}[t]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt[#1]
+}
+\def\longtable@ii{\begin{figure}[t]
+\onecolumn
+\begin{minipage}{0.5\textwidth}
+\oldlt
+}
+\def\endlongtable{\endoldlt
+\end{minipage}
+\twocolumn
+\end{figure}}
+\makeatother
+
 %% Uncomment one of the lines above depending on where your paper is
 %% in the conference process. ``review'' and ``widereview'' are for review
 %% submission, ``preprint'' is for pre-publication, and the final version
@@ -130,17 +175,6 @@ $endif$
 
 %% Keywords that describe your work. Will show as 'Index Terms' in journal
 %% please capitalize first letter and insert punctuation after last keyword
-\keywords{Radiosity, global illumination, constant time}
-
-%% ACM Computing Classification System (CCS). 
-%% See <http://www.acm.org/class/1998/> for details.
-%% The ``\CCScat'' command takes four arguments.
-
-\CCScatlist{ % not used in journal version
- \CCScat{K.6.1}{Management of Computing and Information Systems}%
-{Project and People Management}{Life Cycle};
- \CCScat{K.7.m}{The Computing Profession}{Miscellaneous}{Ethics}
-}
 
 % %% A teaser figure can be included as follows
 % \teaser{
@@ -150,15 +184,38 @@ $endif$
 %   \label{fig:teaser}
 % }
 
-%% Uncomment below to disable the manuscript note
-%\renewcommand{\manuscriptnotetxt}{}
+%% FIXME THIS IS CURRENTLY BREAKING QUARTO AND PANDOC.
+%% \vgtcinsertpkg
 
-%% Copyright space is enabled by default as required by guidelines.
-%% It is disabled by the 'review' option or via the following command:
-% \nocopyrightspace
+\usepackage[dvipsnames]{xcolor}
+\IfFileExists{bookmark.sty}{\usepackage{bookmark}}{\usepackage{hyperref}}
+\hypersetup{
+$if(title-meta)$
+  pdftitle={$title-meta$},
+$endif$
+$if(author-meta)$
+  pdfauthor={$author-meta$},
+$endif$
+$if(lang)$
+  pdflang={$lang$},
+$endif$
+$if(subject)$
+  pdfsubject={$subject$},
+$endif$
+$if(keywords)$
+  pdfkeywords={$for(keywords)$$keywords$$sep$, $endfor$},
+$endif$
+$if(colorlinks)$
+  colorlinks=true,
+  linkcolor={$if(linkcolor)$$linkcolor$$else$Maroon$endif$},
+  filecolor={$if(filecolor)$$filecolor$$else$Maroon$endif$},
+  citecolor={$if(citecolor)$$citecolor$$else$Blue$endif$},
+  urlcolor={$if(urlcolor)$$urlcolor$$else$Blue$endif$},
+$else$
+  hidelinks,
+$endif$
+  pdfcreator={LaTeX via pandoc via quarto}}
 
-
-\vgtcinsertpkg
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %%%%%%%%%%%%%%%%%%%%%% START OF THE PAPER %%%%%%%%%%%%%%%%%%%%%%
